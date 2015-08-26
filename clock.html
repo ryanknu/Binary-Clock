@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+	<script>
+		var log ='';
+
+		function on(id) {
+			$(id).css('background-color', 'black');
+			log += 'turning on ' + id + '<br />';
+		}
+		function off(id) {
+			$(id).css('background-color', 'white');
+			log += 'turning OFF ' + id + '<br />';
+		}
+		setInterval(function() {
+			x = new Date().toString();
+			r = x.match(/.*(\d{2}:\d{2}:\d{2}).*/);
+			r = r[1];
+
+			log = r + "<br />";
+
+			for ( i = 0; i < 6; i++ ) {
+				lc = r.charAt(i + (i / 2));
+				xs = '#x' + (i + 1);
+				log += "looking at " + lc + "<br />";
+				if ( (parseInt(lc) & 8) == 8 ) { on(xs + 'x8') } else { off(xs +'x8'); }
+				if ( (parseInt(lc) & 4) == 4 ) { on(xs + 'x4') } else { off(xs +'x4'); }
+				if ( (parseInt(lc) & 2) == 2 ) { on(xs + 'x2') } else { off(xs +'x2'); }
+				if ( (parseInt(lc) & 1) == 1 ) { on(xs + 'x1') } else { off(xs +'x1'); }
+			}
+
+			// debugging log:
+			//$('div').html(log);
+		},500);
+	</script>
+</head>
+<body>
+	<section>
+		<table border="1">
+			<tr>
+				<td id="x1x8" height="25" width="25">&nbsp;</td>
+				<td id="x2x8" height="25" width="25">&nbsp;</td>
+				<td id="x3x8" height="25" width="25">&nbsp;</td>
+				<td id="x4x8" height="25" width="25">&nbsp;</td>
+				<td id="x5x8" height="25" width="25">&nbsp;</td>
+				<td id="x6x8" height="25" width="25">&nbsp;</td>
+			</tr>
+			<tr>
+				<td id="x1x4" height="25" width="25">&nbsp;</td>
+				<td id="x2x4" height="25" width="25">&nbsp;</td>
+				<td id="x3x4" height="25" width="25">&nbsp;</td>
+				<td id="x4x4" height="25" width="25">&nbsp;</td>
+				<td id="x5x4" height="25" width="25">&nbsp;</td>
+				<td id="x6x4" height="25" width="25">&nbsp;</td>
+			</tr>
+			<tr>
+				<td id="x1x2" height="25" width="25">&nbsp;</td>
+				<td id="x2x2" height="25" width="25">&nbsp;</td>
+				<td id="x3x2" height="25" width="25">&nbsp;</td>
+				<td id="x4x2" height="25" width="25">&nbsp;</td>
+				<td id="x5x2" height="25" width="25">&nbsp;</td>
+				<td id="x6x2" height="25" width="25">&nbsp;</td>
+			</tr>
+			<tr>
+				<td id="x1x1" height="25" width="25">&nbsp;</td>
+				<td id="x2x1" height="25" width="25">&nbsp;</td>
+				<td id="x3x1" height="25" width="25">&nbsp;</td>
+				<td id="x4x1" height="25" width="25">&nbsp;</td>
+				<td id="x5x1" height="25" width="25">&nbsp;</td>
+				<td id="x6x1" height="25" width="25">&nbsp;</td>
+			</tr>
+		</table>
+	</section>
+	<div></div>
+</body>
+</html>
